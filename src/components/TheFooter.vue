@@ -2,21 +2,29 @@
 	<footer class="footer">
 	<div class="footer__container">
 		<ul class="footer__content">
-			<h3 class="footer__item"><a href="https://en.wikipedia.org/wiki/Tic-tac-toe" target="_blank" class="footer__link">Крестики и нолики</a></h3>
-			<li class="footer__item"><a href="https://en.wikipedia.org/wiki/Tic-tac-toe" target="_blank" class="footer__link">Правила игры</a></li>
-			<li class="footer__item"><a href="mailto:artem.kulchitsky@gmail.com" class="footer__link">Сообщить об ошибке</a></li>
+			<li class="footer__item" v-for="item in links" :key="item.label">
+				<a :href="item.link" :target="item.self ? '_self' : '_blank'" class="footer__link">{{ item.label }}</a>
+			</li>
 		</ul>
 	</div>
 	<div class="footer__copy">Copyright © {{ year }} All rights reserved</div>
 	</footer>
 </template>
-<script>
-export default {
-	setup() {
-		const year = new Date().getFullYear()
-		return {
-			year
-		}
-	}
-}
+<script setup>
+	const year = new Date().getFullYear()
+	const links = [
+		{
+			link: 'https://en.wikipedia.org/wiki/Tic-tac-toe',
+			label: 'Крестики и нолики',
+		},
+		{
+			link: 'https://en.wikipedia.org/wiki/Tic-tac-toe',
+			label: 'Правила игры',
+		},
+		{
+			link: 'mailto:artem.kulchitsky@gmail.com',
+			label: 'Сообщить об ошибке',
+			self: true,
+		},
+	]
 </script>
